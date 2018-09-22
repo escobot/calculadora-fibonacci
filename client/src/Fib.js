@@ -19,8 +19,10 @@ class Fib extends Component {
     }
 
     async fetchIndexes() {
-        const values = await axios.get('/api/values/all');
-        this.setState({ seenIndexes: seenIndexes.data });
+        const seenIndexes = await axios.get('/api/values/all');
+        this.setState({
+          seenIndexes: seenIndexes.data
+        });
     }
 
     renderSeenIndexes() {
@@ -49,21 +51,23 @@ class Fib extends Component {
     }
 
     render() {
-        <div>
-            <form onSubmit={this.handleSubmit}>
-                <label>Valor Enésimo Término:</label>
-                <input 
-                    value={this.state.index}
-                    onChange={event => this.setState({ index: event.target.value })}
-                />
-                <button>Resultado</button>
-            </form>
+        return(
+            <div>
+                <form onSubmit={this.handleSubmit}>
+                    <label>Valor Enésimo Término:</label>
+                    <input 
+                        value={this.state.index}
+                        onChange={event => this.setState({ index: event.target.value })}
+                    />
+                    <button>Resultado</button>
+                </form>
 
-            <h3>Términos calculados anteriormente</h3>
-            {this.renderSeenIndexes()}
-            <h3>Resultados anteriores</h3>
-            {this.renderValues()}
-        </div>
+                <h3>Términos calculados anteriormente</h3>
+                {this.renderSeenIndexes()}
+                <h3>Resultados anteriores</h3>
+                {this.renderValues()}
+            </div>
+        )
     }
 }
 
