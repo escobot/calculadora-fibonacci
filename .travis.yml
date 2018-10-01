@@ -1,0 +1,20 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t pbgnz/calculadora-fibonacci-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run pbgnz/calculadora-fibonacci-test npm test -- --coverage
+
+after_success:
+  - docker build -t pbgnz/calculadora-fibonacci-client ./client
+  - docker build -t pbgnz/calculadora-fibonacci-nginx ./nginx
+  - docker build -t pbgnz/calculadora-fibonacci-server ./server
+  - docker build -t pbgnz/calculadora-fibonacci-worker ./worker
+  - echo "$DOCKER_KEY" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push pbgnz/calculadora-fibonacci-client
+  - docker push pbgnz/calculadora-fibonacci-nginx
+  - docker push pbgnz/calculadora-fibonacci-server
+  - docker push pbgnz/calculadora-fibonacci-worker
