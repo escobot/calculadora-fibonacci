@@ -1,9 +1,33 @@
 # calculadora-fibonacci [![Build Status](https://travis-ci.org/escobot/calculadora-fibonacci.svg?branch=master)](https://travis-ci.org/escobot/calculadora-fibonacci)
 
-La secuencia de Fibonacci es una serie de números (excepto el primero y el segundo número) formada por la suma de los dos números anteriores de la secuencia. Los números suelen comenzar desde 0 o 1 y la secuencia de la siguiente manera para ser como 0,1,1,2,3,5,8,13,...... Introduzca el enésimo término para generar la secuencia de Fibonacci y la calculadora le proporcionará la secuencia de Fibonacci hasta ese enésimo término.
+La secuencia de Fibonacci es una serie de números.
 
 Fórmula:
 
 ``` bash
  F(0)=0; F(1)=1; F(n) = F(n-1) + F(n-2), n>1 
  ```
+
+## Prerequisites
+- [docker](https://www.docker.com/)
+- [docker-compose](https://docs.docker.com/compose/install/#install-compose)
+
+## Docker Setup
+
+``` bash
+# start containers
+docker-compose up
+
+# (re)build images and start containers
+docker-compose up --build
+
+# start containers in background
+docker-compose up -d
+
+# stop containers
+docker-compose down
+```
+
+## Architecture
+
+![image](https://user-images.githubusercontent.com/20388583/50126694-f64bce80-023b-11e9-8b5d-78a9db6981e2.png)
